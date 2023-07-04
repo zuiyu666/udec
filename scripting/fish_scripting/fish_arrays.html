@@ -1,0 +1,178 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Arrays &#8212; UDEC 7.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/itasca.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css"/>
+    
+    <!-- icg: hide sidebar on load as needed -->
+    <script type="text/javascript">
+    (function () {
+    if (window.innerWidth <= 720){
+       document.write('<link rel="stylesheet" href="../../../../../../_static/icg_shutsidebar.css" type="text/css" />')
+       }
+    }());
+    </script>
+    
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '7.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/MathJax/MathJax.js?config=TeX-AMS_SVG"></script>
+    <link rel="shortcut icon" href="../../../../../../_static/ICG15-ICN-UDEC.ico"/>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="Matrices" href="fish_matrices.html" />
+    <link rel="prev" title="Vectors" href="fish_vectors.html" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:normal,bold,bolditalic,italic" rel="stylesheet"> 
+  </head>
+  <body>
+<div id = "main">
+   <div id="maintop">
+   <a id="cornerlink" href="../../../../../../contents.html"><img id="cornerlogo" src="../../../../../../_static/udec32.png" alt="Logo"/>&nbsp;&nbsp;<span class="codename">UDEC</span></a>
+
+<div id="searchbox" role="search">
+    <form class="search" action="../../../../../../search.html" method="get">
+      <div><input type="text" id="sb" name="q" /></div>
+      <!--<div><input type="submit" value="Go" /></div>-->
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+   </div>
+   
+   <div id="maincontent">
+   <div id="mainbody" role="main">
+   
+  <div class="section" id="arrays">
+<span id="fish-arraydesc"></span><h1>Arrays</h1>
+<p>Arrays are containers of <span class="codename">FISH</span> variables where the inserted items are assigned and retrieved via
+an integer index. Arrays may be multidimensional. See <a class="reference internal" href="../../../../../fish/doc/fish_manual/fish_fish/fish_fish.html#fish-array"><span class="std std-ref">Array Utilities</span></a> for available methods.</p>
+<p>Arrays are less flexible and perform less well than <a class="reference internal" href="fish_maps.html#fish-mapdesc"><span class="std std-ref">Maps</span></a>. We suggest arrays be replaced with
+<a class="reference internal" href="fish_maps.html#fish-mapdesc"><span class="std std-ref">Maps</span></a> whenever possible.</p>
+<p>The syntax to create a <span class="codename">FISH</span> array is</p>
+<blockquote>
+<div><span class="fishname">array</span> <a class="reference internal" href="../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">array1</span></span></a> (<a class="reference internal" href="../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i1</span></span></a> , <a class="reference internal" href="../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i2</span></span></a> …)</div></blockquote>
+<p>This statement is unusual in <span class="codename">FISH</span> syntax, in that it is executed at compile time (i.e.,
+when the <span class="flag3">c</span> <a class="reference internal" href="statements/defineend.html#fish-statement-defineend"><span class="std std-ref">define … end</span></a> statements are interpreted) rather than runtime (i.e.,
+when the function is executed). It causes an array object to be created and assigned to the
+symbol name <a class="reference internal" href="../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">array1</span></span></a>. The parameters <a class="reference internal" href="../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i1</span></span></a>, <a class="reference internal" href="../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i2</span></span></a>, … specify the array dimensions,
+and must be actual integers or <span class="codename">FISH</span> symbols with integer values that are available at compile
+time. Several array objects may be created on the same line (e.g., <span class="fishname">var2</span> above); the number of
+dimensions may be different for each array.</p>
+<p>Note the following:</p>
+<ol class="arabic simple">
+<li>The given name may be an existing single variable or function. If so, its value is
+converted to a pointer to an array, and its former value is lost. If the name does not
+already exist, it is created as a global variable.</li>
+<li>The given dimensions (<a class="reference internal" href="../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i1</span></span></a>, <a class="reference internal" href="../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i2</span></span></a>, …) must be positive integers or evaluate
+to positive integers (i.e., indices start at 1, not 0).</li>
+<li>There is no limit to the number and size of the array dimensions, except memory capacity.</li>
+</ol>
+<p>Note that array objects can also be created and destroyed with the <a class="reference internal" href="../../../../../fish/doc/fish_manual/fish_fish/array_utilities/fish_array.create.html#function:array.create" title="function:array create"><code class="xref fish fish-func docutils literal"><span class="pre">array.create</span></code></a> and
+<a class="reference internal" href="../../../../../fish/doc/fish_manual/fish_fish/array_utilities/fish_array.delete.html#function:array.delete" title="function:array delete"><code class="xref fish fish-func docutils literal"><span class="pre">array.delete</span></code></a> intrinsic functions. The <a class="reference internal" href="../../../../../fish/doc/fish_manual/fish_fish/array_utilities/fish_array.create.html#function:array.create" title="function:array create"><code class="xref fish fish-func docutils literal"><span class="pre">array.create</span></code></a> function has the advantage
+of taking arguments that can be evaluated at runtime. For example, the statement:</p>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="k">array</span> <span class="n">abc</span><span class="p">(</span><span class="m m-Double">1</span><span class="p">,</span><span class="m m-Double">2</span><span class="p">,</span><span class="m m-Double">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>is equivalent to:</p>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="ni">abc</span> <span class="p">=</span> <span class="k">array.create</span><span class="p">(</span><span class="m m-Double">1</span><span class="p">,</span><span class="m m-Double">2</span><span class="p">,</span><span class="m m-Double">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>except that the former is executed at compile time, and the latter is executed at runtime.</p>
+<p>Members of an array are <span class="codename">FISH</span> variables (except that there is no name associated with them),
+and are therefore governed by the same rules as symbol values. If a <span class="codename">FISH</span> symbol points to
+an array, array elements may be accessed by specifying an index in a parenthesis-enclosed
+list. For example:</p>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="ni">var1</span> <span class="p">=</span><span class="ni"> abc</span><span class="p">(</span><span class="m m-Double">3</span><span class="p">,</span><span class="ni"> nn </span><span class="o">+</span> <span class="m m-Double">3</span><span class="p">,</span><span class="ni"> max </span><span class="p">(</span><span class="m m-Double">5</span><span class="p">,</span> <span class="m m-Double">6</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>is a valid statement if <a class="reference internal" href="../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">abc</span></span></a> is currently pointing to a three-dimensional array. Arrays
+may appear on both sides of an assignment, and arrays may be used as indices of other arrays.</p>
+<p>Be aware that if <a class="reference internal" href="../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">abc</span></span></a> currently points to an array, the statement:</p>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="ni">abc</span> <span class="p">=</span> <span class="m m-Double">0</span>
+</pre></div>
+</div>
+<p>will cause <a class="reference internal" href="../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">abc</span></span></a> to become an integer whose value is zero. If no other symbol points
+to the array, all access to that array is lost and the memory will not be recovered until
+a <a class="reference internal" href="../../../../../kernel/doc/manual/model/commands/cmd_model.new.html#command:model.new" title="command:model new"><code class="xref fish fish-cmd docutils literal"><span class="pre">model</span> <span class="pre">new</span></code></a> command is issued.</p>
+<p>A <span class="codename">FISH</span> array symbol name may be used on the command line with index arguments:</p>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="n">gravity</span> <span class="m m-Double">0</span> <span class="m m-Double">0</span> <span class="ni">@abc</span><span class="p">(</span><span class="m m-Double">1</span><span class="p">,</span><span class="m m-Double">2</span><span class="p">,</span><span class="m m-Double">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where <a class="reference internal" href="../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">abc</span></span></a> points to a three-dimensional array. This
+is true for assignments as well:</p>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="ni">@abc</span><span class="p">(</span><span class="m m-Double">1</span><span class="p">,</span><span class="m m-Double">2</span><span class="p">,</span><span class="m m-Double">3</span><span class="p">)</span> <span class="p">=</span> <span class="m m-Double">4.0</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../../../../../kernel/doc/manual/fish/commands/cmd_fish.list.html#kwd:fish.list.symbols" title="kwd:fish list symbols"><code class="xref fish fish-cmd docutils literal"><span class="pre">fish</span> <span class="pre">list</span> <span class="pre">symbols</span></code></a> command gives the type as “(array pointer).” If the symbol currently
+points to an array, this is immediately followed by the size of the array.</p>
+<p>In addition to printing the pointer type and size of an array, one can print array entries:</p>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="nb">list</span> <span class="ni">@abc</span><span class="p">(</span><span class="m m-Double">1</span><span class="p">,</span><span class="m m-Double">2</span><span class="p">,</span><span class="m m-Double">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+   </div>
+   <div id="navbutton">&#8644;</div>
+   <!-- <div id="navbutton">&#9776;</div>
+        <div id="totopbutton">&#8657;</div> -->
+      <div id="mainbottom1">
+      
+   <span class="prevnext">
+   <ul>
+     <li class="nav-item nav-item-0"><a href="../../../../../../contents.html">UDEC 7.0 documentation</a> &#187;</li>
+       <li class="nav-item nav-item-1"><a href="fish_scripting.html" ><span class="codename">FISH</span> Scripting</a> &#187;</li>
+       <li class="nav-item nav-item-2"><a href="fish_languagerules.html" ><span class="codename">FISH</span> Rules and Usage</a> &#187;</li>
+       <li class="nav-item nav-item-3"><a href="fish_datatypes.html" accesskey="U">Data Types</a> &#187;</li> 
+   </ul>
+   </span>
+      <br><br>
+       <span class="prevnext">
+       &#8656;<a href="fish_vectors.html"
+                           title="previous chapter"> Vectors</a> |    
+       <a href="fish_matrices.html"
+                           title="next chapter">Matrices</a> &#8658;
+      </span>
+      </div>
+      <div id="mainbottom2">
+      <table style="width: 100%; text-align: center; margin-top: -0.5em;" class="blank"><tr>
+      <td><a class="internal reference" href ="http://www.itascacg.com/docs/helpfeedback/feedback2.php?UDEC 7.0?Arrays" target="_blank"> Was this helpful? ...</a></td>
+      <td><a href="https://www.itascacg.com/software/udec">UDEC</a>
+         <a href="../../../../utilities/sphinxhelp.html" id="docdoor">&copy;</a>  2018, 
+      <a href="https://www.itascacg.com">Itasca</a></td>
+      <td>
+         Updated: Jun 07, 2022
+      </td>
+      </tr>
+      </table>
+      </div>
+
+   </div>
+</div> 
+   <div id="mySidenav" class="sidenav">
+     <iframe src="../../../../../../navtree.html" id="toctobj2" frameborder="0"></iframe>
+   </div>
+
+
+
+  <script src="../../../../../../_static/icgscripts.js" ></script>
+  </body>
+</html>

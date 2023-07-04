@@ -1,0 +1,263 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Functions: Structure, Evaluation, and Calling Scheme &#8212; UDEC 7.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/itasca.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css"/>
+    
+    <!-- icg: hide sidebar on load as needed -->
+    <script type="text/javascript">
+    (function () {
+    if (window.innerWidth <= 720){
+       document.write('<link rel="stylesheet" href="../../../../../../_static/icg_shutsidebar.css" type="text/css" />')
+       }
+    }());
+    </script>
+    
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '7.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/MathJax/MathJax.js?config=TeX-AMS_SVG"></script>
+    <link rel="shortcut icon" href="../../../../../../_static/ICG15-ICN-UDEC.ico"/>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="Arithmetic: Expressions and Type Conversions" href="fish_arithmetic.html" />
+    <link rel="prev" title="Scope of Variables" href="fish_scopeofvariables.html" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:normal,bold,bolditalic,italic" rel="stylesheet"> 
+  </head>
+  <body>
+<div id = "main">
+   <div id="maintop">
+   <a id="cornerlink" href="../../../../../../contents.html"><img id="cornerlogo" src="../../../../../../_static/udec32.png" alt="Logo"/>&nbsp;&nbsp;<span class="codename">UDEC</span></a>
+
+<div id="searchbox" role="search">
+    <form class="search" action="../../../../../../search.html" method="get">
+      <div><input type="text" id="sb" name="q" /></div>
+      <!--<div><input type="submit" value="Go" /></div>-->
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+   </div>
+   
+   <div id="maincontent">
+   <div id="mainbody" role="main">
+   
+  <div class="section" id="functions-structure-evaluation-and-calling-scheme">
+<span id="fish-functionsbasics"></span><h1>Functions: Structure, Evaluation, and Calling Scheme</h1>
+<p>The only object in the <span class="codename">FISH</span> language that can be executed is the function. The name of a function follows the <span class="flag3">c</span> <a class="reference internal" href="statements/defineend.html#fish-statement-defineend"><span class="std std-ref">define</span></a>
+statement, and its scope terminates with the <span class="flag3">c</span> <a class="reference internal" href="statements/defineend.html#fish-statement-defineend"><span class="std std-ref">end</span></a> statement. The <span class="flag3">c</span> <a class="reference internal" href="statements/defineend.html#fish-statement-defineend"><span class="std std-ref">end</span></a> statement also serves to return control
+to the caller when the function is executed. (Note that the <span class="flag3">c</span> <a class="reference internal" href="statements/exit.html#fish-statement-exit"><span class="std std-ref">exit</span></a> statement returns control prior to an <span class="flag3">c</span> <a class="reference internal" href="statements/defineend.html#fish-statement-defineend"><span class="std std-ref">end</span></a> statement.) Consider this example showing function construction and use:</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="nb">model new</span>
+<span class="nb">fish</span> <span class="k">define</span> <span class="ni">xxx</span>
+  <span class="ni">aa</span>  <span class="p">=</span> <span class="m m-Double">2</span> <span class="o">*</span> <span class="m m-Double">3</span>
+  <span class="ni">xxx</span> <span class="p">=</span><span class="ni"> aa </span><span class="o">+</span><span class="ni"> bb</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The value of <span class="fishname">xxx</span> is changed when the function is executed. The variable <span class="fishname">aa</span> is computed locally, but the
+existing value of <span class="fishname">bb</span> is used in the computation of <span class="fishname">xxx</span>. If values are not explicitly given to variables,
+they default to zero (integer). It is not necessary for a function to assign a value to the variable corresponding to
+its name. The function <span class="fishname">xxx</span> may be invoked in one of the following ways:</p>
+<ol class="arabic">
+<li><p class="first">as the single word <span class="cmdkey">xxx</span> inside a <span class="codename">FISH</span> function;</p>
+</li>
+<li><p class="first">as the variable <span class="cmdkey">xxx</span> in a <span class="codename">FISH</span> formula, e.g.,:</p>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="ni">new_var</span> <span class="p">=</span> <span class="p">(</span><span class="k">math.sqrt</span><span class="p">(</span><span class="ni">xxx</span><span class="p">)</span> <span class="o">/</span> <span class="m m-Double">5.6</span><span class="p">)</span>^<span class="m m-Double">4</span><span class="c">;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">as a single word <span class="cmdkey">&#64;xxx</span> in a <span class="codename">UDEC</span> input line;</p>
+</li>
+<li><p class="first">as a single word [<span class="cmdkey">xxx</span>] enclosed in brackets as outlined <a class="reference internal" href="fish_inline.html#fish-inline"><span class="std std-ref">here</span></a>;</p>
+</li>
+<li><p class="first">as a symbolic replacement for a number in a <span class="codename">UDEC</span> input line; or</p>
+</li>
+<li><p class="first">as a parameter to the <a class="reference internal" href="../../../../../kernel/doc/manual/fish/commands/cmd_fish.set.html#command:fish.set" title="command:fish set"><code class="xref fish fish-cmd docutils literal"><span class="pre">fish</span> <span class="pre">set</span></code></a>, <a class="reference internal" href="../../../../../kernel/doc/manual/program/commands/cmd_program.list.html#command:program.list" title="command:program list"><code class="xref fish fish-cmd docutils literal"><span class="pre">program</span> <span class="pre">list</span></code></a>, or <span class="flag3">i</span> <a class="reference internal" href="../../../../../kernel/doc/manual/history_manual/history_commands/history_commands.html#history-commands"><span class="std std-ref">history</span></a> commands.</p>
+</li>
+</ol>
+<p><span class="codename">FISH</span> functions may also take an arbitrary number of arguments, either using the <a class="reference internal" href="statements/argument.html#fish-statement-argument"><span class="std std-ref">argument</span></a>
+statement or via defining the arguments in the function definition. For instance:</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="nb">fish</span> <span class="k">define</span> <span class="ni">fred</span>
+    <span class="ni">fred</span> <span class="p">=</span> <span class="m m-Double">3.0</span>
+<span class="k">end</span>
+<span class="nb">fish</span> <span class="k">define</span> <span class="ni">george</span>
+    <span class="k">argument</span> <span class="n">one</span>
+    <span class="k">argument</span> <span class="n">two</span>
+    <span class="ni">george</span> <span class="p">=</span><span class="ni"> one </span><span class="o">*</span><span class="ni"> two</span>
+<span class="k">end</span>
+<span class="nb">list</span> <span class="ni">@george</span><span class="p">(</span><span class="ni">@fred</span><span class="p">,</span><span class="m m-Double">2.0</span><span class="p">)</span> <span class="ni">@fred</span>
+<span class="nb">fish</span> <span class="k">define</span> <span class="ni">fun_1</span>
+    <span class="ni">fun_1</span> <span class="p">=</span> <span class="m m-Double">1.0</span>
+    <span class="ni">ii</span> <span class="p">=</span> <span class="k">io.out</span><span class="p">(</span><span class="s">&#39;fun_1&#39;</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="nb">fish</span> <span class="k">define</span> <span class="ni">fun_2</span><span class="p">(</span><span class="ni">arg1</span><span class="p">)</span>
+    <span class="ni">fun_2</span> <span class="p">=</span> <span class="m m-Double">2.0</span>
+    <span class="ni">ii</span> <span class="p">=</span> <span class="k">io.out</span><span class="p">(</span><span class="s">&#39;fun_2&#39;</span><span class="p">)</span>
+    <span class="ni">ii</span> <span class="p">=</span> <span class="k">io.out</span><span class="p">(</span><span class="ni">string</span><span class="p">(</span><span class="ni">arg1</span><span class="p">))</span>
+<span class="k">end</span>
+<span class="nb">fish</span> <span class="k">define</span> <span class="ni">fun_3</span><span class="p">(</span><span class="ni">arg1</span><span class="p">,</span><span class="ni">arg2</span><span class="p">)</span>
+    <span class="ni">fun_3</span> <span class="p">=</span> <span class="m m-Double">3.0</span>
+    <span class="ni">ii</span> <span class="p">=</span> <span class="k">io.out</span><span class="p">(</span><span class="s">&#39;fun_3&#39;</span><span class="p">)</span>
+    <span class="ni">ii</span> <span class="p">=</span> <span class="k">io.out</span><span class="p">(</span><span class="ni">string</span><span class="p">(</span><span class="ni">arg1</span><span class="p">))</span>
+    <span class="ni">ii</span> <span class="p">=</span> <span class="k">io.out</span><span class="p">(</span><span class="ni">string</span><span class="p">(</span><span class="ni">arg2</span><span class="p">))</span>
+<span class="k">end</span>
+<span class="nb">fish</span> <span class="k">define</span> <span class="ni">execute</span>
+    <span class="n">fun_1</span> <span class="n">fun_2</span><span class="p">(</span><span class="m m-Double">1.0</span><span class="p">)</span> <span class="n">fun_3</span><span class="p">(</span><span class="m m-Double">1.0</span><span class="p">,</span><span class="m m-Double">2.0</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="ni">@execute</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>A function may be referred to in another function before it is defined; the <span class="codename">FISH</span> compiler
+simply creates a symbol at the time of first mention and then links all references to the
+function when it is defined by a <span class="flag3">c</span> <a class="reference internal" href="statements/defineend.html#fish-statement-defineend"><span class="std std-ref">define</span></a> statement. A function cannot be deleted, but it can be redefined.</p>
+<p>Function calls may be nested to any level (i.e., functions may refer to other functions, which may refer to others,
+ad infinitum). However, recursive function calls are not allowed (i.e., execution of a function must not invoke
+that same function). A recursive function call shows a recursive function call, which is not allowed,
+because the name of the defining function is used in such a way that the function will try to call itself. The
+example will produce an error on execution:</p>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="ni">force_sum</span>
+   <span class="ni">force_sum</span> <span class="p">=</span> <span class="m m-Double">0.0</span>
+   <span class="k">loop</span> <span class="k">foreach</span> <span class="k">local</span> <span class="ni">cp</span> <span class="k">contact.list</span><span class="p">(</span><span class="s">&#39;ball-ball&#39;</span><span class="p">)</span>
+      <span class="ni">force_sum</span> <span class="p">=</span><span class="ni"> force_sum </span><span class="o">+</span> <span class="k">contact.force.normal</span><span class="p">(</span><span class="ni">cp</span><span class="p">)</span>
+ <span class="n">  end_</span><span class="k">loop</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The same function should be coded as shown:</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="nb">fish</span> <span class="k">define</span> <span class="ni">force_sum</span>
+   <span class="ni">sum</span> <span class="p">=</span> <span class="m m-Double">0.0</span>
+   <span class="k">loop</span> <span class="k">foreach</span> <span class="k">local</span> <span class="ni">cp</span> <span class="k">contact.list</span><span class="p">(</span><span class="s">&#39;ball-ball&#39;</span><span class="p">)</span>
+      <span class="ni">sum</span> <span class="p">=</span><span class="ni"> sum </span><span class="o">+</span> <span class="k">contact.force.global</span><span class="p">(</span><span class="ni">cp</span><span class="p">)</span>
+ <span class="n">  end_</span><span class="k">loop</span>
+   <span class="ni">force_sum</span> <span class="p">=</span><span class="ni"> sum</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The difference between variables and functions is that a function is always executed whenever its name is
+mentioned, while a variable simply conveys its current value. However, the execution of a function may
+cause other variables (as opposed to functions) to be evaluated. This effect is useful, for example,
+when several histories of <span class="codename">FISH</span> variables are required. Only one function is necessary in order to
+evaluate several quantities, as below:</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="nb">model new</span>
+<span class="nb">fish</span> <span class="k">define</span> <span class="ni">h_var_1</span>
+  <span class="c">;</span>
+  <span class="c">; bp22 = pointer to ball with ID = 22, set during creation...</span>
+  <span class="c">; bp45 = pointer to ball with ID = 45, set during creation...</span>
+  <span class="c">;</span>
+  <span class="ni">xx</span> <span class="p">=</span> <span class="k">ball.pos.x</span><span class="p">(</span><span class="n">bp45</span><span class="p">)</span>
+  <span class="ni">h_var_1</span> <span class="p">=</span> <span class="k">ball.pos.x</span><span class="p">(</span><span class="n">bp45</span><span class="p">)</span>
+  <span class="ni">h_var_2</span> <span class="p">=</span> <span class="k">ball.pos.x</span><span class="p">(</span><span class="n">bp22</span><span class="p">)</span>
+  <span class="ni">h_var_3</span> <span class="p">=</span> <span class="k">math.abs</span><span class="p">(</span><span class="ni">h_var_2 </span><span class="o">-</span><span class="ni"> xx</span><span class="p">)</span>  <span class="c">; use of xx here avoids recursion</span>
+  <span class="ni">h_var_4</span> <span class="p">=</span> <span class="k">ball.vel.x</span><span class="p">(</span><span class="n">bp45</span><span class="p">)</span>
+  <span class="ni">h_var_5</span> <span class="p">=</span> <span class="k">ball.vel.x</span><span class="p">(</span><span class="n">bp22</span><span class="p">)</span>
+  <span class="ni">h_var_6</span> <span class="p">=</span> <span class="k">math.abs</span><span class="p">(</span><span class="ni">h_var_5 </span><span class="o">-</span><span class="ni"> h_var_4</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The <span class="codename">UDEC</span> commands to request <a class="reference internal" href="../../../../../kernel/doc/manual/history_manual/history.html#history-manual"><span class="std std-ref">histories</span></a> might be:</p>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="nb">history</span> <span class="ni">@h_var_1</span>
+<span class="nb">history</span> <span class="ni">@h_var_2</span>
+<span class="nb">history</span> <span class="ni">@h_var_3</span>
+<span class="nb">history</span> <span class="ni">@h_var_4</span>
+<span class="nb">history</span> <span class="ni">@h_var_5</span>
+<span class="nb">history</span> <span class="ni">@h_var_6</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The function <span class="fishname">h_var_1</span> would be executed by <span class="codename">UDEC</span>’s <a class="reference internal" href="../../../../../kernel/doc/manual/history_manual/history.html#history-manual"><span class="std std-ref">history</span></a> logic at a specified interval.
+But as a side effect, the values of <span class="fishname">h_var_2</span> through <span class="fishname">h_var_6</span> would also be updated.</p>
+</div>
+
+
+   </div>
+   <div id="navbutton">&#8644;</div>
+   <!-- <div id="navbutton">&#9776;</div>
+        <div id="totopbutton">&#8657;</div> -->
+      <div id="mainbottom1">
+      
+   <span class="prevnext">
+   <ul>
+     <li class="nav-item nav-item-0"><a href="../../../../../../contents.html">UDEC 7.0 documentation</a> &#187;</li>
+       <li class="nav-item nav-item-1"><a href="fish_scripting.html" ><span class="codename">FISH</span> Scripting</a> &#187;</li>
+       <li class="nav-item nav-item-2"><a href="fish_languagerules.html" accesskey="U"><span class="codename">FISH</span> Rules and Usage</a> &#187;</li> 
+   </ul>
+   </span>
+      <br><br>
+       <span class="prevnext">
+       &#8656;<a href="fish_scopeofvariables.html"
+                           title="previous chapter"> Scope of Variables</a> |    
+       <a href="fish_arithmetic.html"
+                           title="next chapter">Arithmetic: Expressions and Type Conversions</a> &#8658;
+      </span>
+      </div>
+      <div id="mainbottom2">
+      <table style="width: 100%; text-align: center; margin-top: -0.5em;" class="blank"><tr>
+      <td><a class="internal reference" href ="http://www.itascacg.com/docs/helpfeedback/feedback2.php?UDEC 7.0?Functions: Structure, Evaluation, and Calling Scheme" target="_blank"> Was this helpful? ...</a></td>
+      <td><a href="https://www.itascacg.com/software/udec">UDEC</a>
+         <a href="../../../../utilities/sphinxhelp.html" id="docdoor">&copy;</a>  2018, 
+      <a href="https://www.itascacg.com">Itasca</a></td>
+      <td>
+         Updated: Jun 07, 2022
+      </td>
+      </tr>
+      </table>
+      </div>
+
+   </div>
+</div> 
+   <div id="mySidenav" class="sidenav">
+     <iframe src="../../../../../../navtree.html" id="toctobj2" frameborder="0"></iframe>
+   </div>
+
+
+
+  <script src="../../../../../../_static/icgscripts.js" ></script>
+  </body>
+</html>

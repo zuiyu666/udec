@@ -1,0 +1,150 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Caseof Case Endcase &#8212; UDEC 7.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../../_static/itasca.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../_static/pygments.css" type="text/css"/>
+    
+    <!-- icg: hide sidebar on load as needed -->
+    <script type="text/javascript">
+    (function () {
+    if (window.innerWidth <= 720){
+       document.write('<link rel="stylesheet" href="../../../../../../../_static/icg_shutsidebar.css" type="text/css" />')
+       }
+    }());
+    </script>
+    
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../../',
+        VERSION:     '7.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/MathJax/MathJax.js?config=TeX-AMS_SVG"></script>
+    <link rel="shortcut icon" href="../../../../../../../_static/ICG15-ICN-UDEC.ico"/>
+    <link rel="index" title="Index" href="../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../search.html" />
+    <link rel="next" title="Command EndCommand" href="commandendcommand.html" />
+    <link rel="prev" title="Argument" href="argument.html" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:normal,bold,bolditalic,italic" rel="stylesheet"> 
+  </head>
+  <body>
+<div id = "main">
+   <div id="maintop">
+   <a id="cornerlink" href="../../../../../../../contents.html"><img id="cornerlogo" src="../../../../../../../_static/udec32.png" alt="Logo"/>&nbsp;&nbsp;<span class="codename">UDEC</span></a>
+
+<div id="searchbox" role="search">
+    <form class="search" action="../../../../../../../search.html" method="get">
+      <div><input type="text" id="sb" name="q" /></div>
+      <!--<div><input type="submit" value="Go" /></div>-->
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+   </div>
+   
+   <div id="maincontent">
+   <div id="mainbody" role="main">
+   
+  <div class="section" id="caseof-case-endcase">
+<span id="fish-statement-caseof"></span><h1>Caseof Case Endcase</h1>
+<p><span class="fishname">caseof</span> <a class="reference internal" href="../../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">expr</span></span></a></p>
+<blockquote>
+<div>…</div></blockquote>
+<p><span class="fishname">case</span> <a class="reference internal" href="../../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">n</span></span></a></p>
+<blockquote>
+<div>…</div></blockquote>
+<p><span class="fishname">endcase</span></p>
+<p>The action of these control statements is similar to the FORTRAN-computed GOTO statement or C’s SWITCH statement. It allows
+control to be passed rapidly to one of several code segments, depending on the value of an index. The use of the keywords
+is illustrated:</p>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="k">caseof</span> <span class="n">expr</span>
+  <span class="c">; ................. default code here</span>
+  <span class="k">case</span> <span class="n">i1</span>
+  <span class="c">; ................. case i1 code here</span>
+  <span class="k">case</span> <span class="n">i2</span>
+  <span class="c">; ................. case i2 code here</span>
+  <span class="k">case</span> <span class="n">i3</span>
+  <span class="c">; ................. case i3 code here</span>
+<span class="k">endcase</span>
+</pre></div>
+</div>
+<p>The object <a class="reference internal" href="../../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">expr</span></span></a> following <span class="fishname">caseof</span> can be any valid algebraic expression; when evaluated, it will be converted
+to an integer. The items <a class="reference internal" href="../../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i1</span></span></a>, <a class="reference internal" href="../../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i2</span></span></a>, <a class="reference internal" href="../../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i3</span></span></a>, … must be integers (not symbols) in the range <a class="reference internal" href="../../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">0</span></span></a>
+to <a class="reference internal" href="../../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">255</span></span></a>. If the value of <a class="reference internal" href="../../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">expr</span></span></a> equals <a class="reference internal" href="../../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i1</span></span></a>, then control jumps to the statements following the
+<span class="fishname">case</span> <a class="reference internal" href="../../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i1</span></span></a> statement; execution then continues until the next <span class="fishname">case</span> statement is encountered. Control
+then jumps to the code following the <span class="fishname">endcase</span> statement; there is no “fall-through” as in the C language. Similar
+jumps are executed if the value of <a class="reference internal" href="../../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">expr</span></span></a> equals <a class="reference internal" href="../../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i2</span></span></a>, <a class="reference internal" href="../../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i3</span></span></a>, and so on. If the value of <a class="reference internal" href="../../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">expr</span></span></a> does
+not equal the numbers associated with any of the <span class="fishname">case</span> statements, then any code immediately following the
+<span class="fishname">caseof</span> statement is executed, with a jump to <span class="fishname">endcase</span> when the first <span class="fishname">case</span> is encountered. If the value
+of <a class="reference internal" href="../../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">expr</span></span></a> is less than zero or greater than the greatest number associated with any of the <span class="fishname">case</span>s, then an
+execution error is reported, and processing stops. The numbers <em>n</em> (e.g., <a class="reference internal" href="../../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i1</span></span></a>, <a class="reference internal" href="../../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i2</span></span></a>, <a class="reference internal" href="../../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i3</span></span></a>) need not be
+sequential or contiguous, but no duplicate numbers may exist.</p>
+<p><span class="fishname">caseof</span> … <span class="fishname">endcase</span> sections may be nested to any degree; there will be no conflict between <span class="fishname">case</span>
+numbers in the different levels of nesting (e.g., several instances of <span class="fishname">case</span> <a class="reference internal" href="../../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">5</span></span></a> may appear, provided that
+they are all associated with different nesting levels). The use of <span class="fishname">case</span> statements allows rapid decisions to be
+made (much more quickly than for a series of <a class="reference internal" href="ifendif.html#fish-statement-ifendif"><span class="std std-ref">if … endif</span></a> statements). However, the
+penalty is that some memory is consumed; the amount of memory used depends on the maximum numerical value associated with
+the <span class="fishname">case</span> statements. The memory consumed is one plus the maximum <span class="fishname">case</span> number in double-words (four-byte units).</p>
+</div>
+
+
+   </div>
+   <div id="navbutton">&#8644;</div>
+   <!-- <div id="navbutton">&#9776;</div>
+        <div id="totopbutton">&#8657;</div> -->
+      <div id="mainbottom1">
+      
+   <span class="prevnext">
+   <ul>
+     <li class="nav-item nav-item-0"><a href="../../../../../../../contents.html">UDEC 7.0 documentation</a> &#187;</li>
+       <li class="nav-item nav-item-1"><a href="../fish_scripting.html" ><span class="codename">FISH</span> Scripting</a> &#187;</li>
+       <li class="nav-item nav-item-2"><a href="../fish_statements.html" accesskey="U"><span class="codename">FISH</span> Statements Index</a> &#187;</li> 
+   </ul>
+   </span>
+      <br><br>
+       <span class="prevnext">
+       &#8656;<a href="argument.html"
+                           title="previous chapter"> Argument</a> |    
+       <a href="commandendcommand.html"
+                           title="next chapter">Command EndCommand</a> &#8658;
+      </span>
+      </div>
+      <div id="mainbottom2">
+      <table style="width: 100%; text-align: center; margin-top: -0.5em;" class="blank"><tr>
+      <td><a class="internal reference" href ="http://www.itascacg.com/docs/helpfeedback/feedback2.php?UDEC 7.0?Caseof Case Endcase" target="_blank"> Was this helpful? ...</a></td>
+      <td><a href="https://www.itascacg.com/software/udec">UDEC</a>
+         <a href="../../../../../utilities/sphinxhelp.html" id="docdoor">&copy;</a>  2018, 
+      <a href="https://www.itascacg.com">Itasca</a></td>
+      <td>
+         Updated: Jun 07, 2022
+      </td>
+      </tr>
+      </table>
+      </div>
+
+   </div>
+</div> 
+   <div id="mySidenav" class="sidenav">
+     <iframe src="../../../../../../../navtree.html" id="toctobj2" frameborder="0"></iframe>
+   </div>
+
+
+
+  <script src="../../../../../../../_static/icgscripts.js" ></script>
+  </body>
+</html>

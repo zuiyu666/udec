@@ -1,0 +1,140 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>If Else If Else EndIf &#8212; UDEC 7.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../../_static/itasca.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../_static/pygments.css" type="text/css"/>
+    
+    <!-- icg: hide sidebar on load as needed -->
+    <script type="text/javascript">
+    (function () {
+    if (window.innerWidth <= 720){
+       document.write('<link rel="stylesheet" href="../../../../../../../_static/icg_shutsidebar.css" type="text/css" />')
+       }
+    }());
+    </script>
+    
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../../',
+        VERSION:     '7.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/MathJax/MathJax.js?config=TeX-AMS_SVG"></script>
+    <link rel="shortcut icon" href="../../../../../../../_static/ICG15-ICN-UDEC.ico"/>
+    <link rel="index" title="Index" href="../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../search.html" />
+    <link rel="next" title="Local" href="local.html" />
+    <link rel="prev" title="Global" href="global.html" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:normal,bold,bolditalic,italic" rel="stylesheet"> 
+  </head>
+  <body>
+<div id = "main">
+   <div id="maintop">
+   <a id="cornerlink" href="../../../../../../../contents.html"><img id="cornerlogo" src="../../../../../../../_static/udec32.png" alt="Logo"/>&nbsp;&nbsp;<span class="codename">UDEC</span></a>
+
+<div id="searchbox" role="search">
+    <form class="search" action="../../../../../../../search.html" method="get">
+      <div><input type="text" id="sb" name="q" /></div>
+      <!--<div><input type="submit" value="Go" /></div>-->
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+   </div>
+   
+   <div id="maincontent">
+   <div id="mainbody" role="main">
+   
+  <div class="section" id="if-else-if-else-endif">
+<span id="fish-statement-ifendif"></span><h1>If Else If Else EndIf</h1>
+<p><span class="fishname">if</span> <a class="reference internal" href="../../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">expr1 test expr2</span></span></a> <span class="fishname">then</span></p>
+<blockquote>
+<div>…</div></blockquote>
+<p><span class="fishname">else if</span> <a class="reference internal" href="../../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">expr1 test expr2</span></span></a> <span class="fishname">then</span></p>
+<blockquote>
+<div>…</div></blockquote>
+<p><span class="fishname">else</span></p>
+<blockquote>
+<div>…</div></blockquote>
+<p><span class="fishname">endif</span></p>
+<p>These statements allow conditional execution of <span class="codename">FISH</span> code segments; <span class="fishname">else</span> and <span class="fishname">else if</span> are optional,
+and the word <span class="fishname">then</span> may be omitted if desired.
+The item test consists of one of the following symbols, or symbol pairs:</p>
+<blockquote>
+<div>=   #   &gt;   &lt;   &gt;=   &lt;=</div></blockquote>
+<p>The meanings are standard, except for #, which means “not equal.” The items <a class="reference internal" href="../../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">expr1</span></span></a> and <a class="reference internal" href="../../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">expr2</span></span></a> are any valid
+algebraic expressions
+(which can involve functions, <span class="codename">UDEC</span> variables, etc.).
+If the test is true, then the statements immediately following <span class="fishname">if</span> are executed until <span class="fishname">else</span> or <span class="fishname">endif</span>
+is encountered.
+If the test is false, the statements between <span class="fishname">else</span> and <span class="fishname">endif</span> are executed if the <span class="fishname">else</span> statement exists;
+otherwise, control jumps
+to the first line after <span class="fishname">endif</span>.
+All the given test symbols may be applied when expressions <a class="reference internal" href="../../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">expr1</span></span></a> and <a class="reference internal" href="../../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">expr2</span></span></a> evaluate to integers or
+floating-point values (or a combination of the two).
+If both expressions evaluate to strings, then only two tests are valid: = and #; all other operations are invalid for strings.
+Strings must match exactly for equality. Similarly, both expressions may evaluate to pointers, but only = and # tests are valid.</p>
+<p><span class="fishname">IF</span> … <span class="fishname">else</span><span class="fishname">IF</span> … <span class="fishname">else</span> … <span class="fishname">endif</span> clauses can be nested to any depth.</p>
+</div>
+
+
+   </div>
+   <div id="navbutton">&#8644;</div>
+   <!-- <div id="navbutton">&#9776;</div>
+        <div id="totopbutton">&#8657;</div> -->
+      <div id="mainbottom1">
+      
+   <span class="prevnext">
+   <ul>
+     <li class="nav-item nav-item-0"><a href="../../../../../../../contents.html">UDEC 7.0 documentation</a> &#187;</li>
+       <li class="nav-item nav-item-1"><a href="../fish_scripting.html" ><span class="codename">FISH</span> Scripting</a> &#187;</li>
+       <li class="nav-item nav-item-2"><a href="../fish_statements.html" accesskey="U"><span class="codename">FISH</span> Statements Index</a> &#187;</li> 
+   </ul>
+   </span>
+      <br><br>
+       <span class="prevnext">
+       &#8656;<a href="global.html"
+                           title="previous chapter"> Global</a> |    
+       <a href="local.html"
+                           title="next chapter">Local</a> &#8658;
+      </span>
+      </div>
+      <div id="mainbottom2">
+      <table style="width: 100%; text-align: center; margin-top: -0.5em;" class="blank"><tr>
+      <td><a class="internal reference" href ="http://www.itascacg.com/docs/helpfeedback/feedback2.php?UDEC 7.0?If Else If Else EndIf" target="_blank"> Was this helpful? ...</a></td>
+      <td><a href="https://www.itascacg.com/software/udec">UDEC</a>
+         <a href="../../../../../utilities/sphinxhelp.html" id="docdoor">&copy;</a>  2018, 
+      <a href="https://www.itascacg.com">Itasca</a></td>
+      <td>
+         Updated: Jun 07, 2022
+      </td>
+      </tr>
+      </table>
+      </div>
+
+   </div>
+</div> 
+   <div id="mySidenav" class="sidenav">
+     <iframe src="../../../../../../../navtree.html" id="toctobj2" frameborder="0"></iframe>
+   </div>
+
+
+
+  <script src="../../../../../../../_static/icgscripts.js" ></script>
+  </body>
+</html>

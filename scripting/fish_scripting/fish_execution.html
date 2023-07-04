@@ -1,0 +1,138 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Execution of FISH Functions &#8212; UDEC 7.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/itasca.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css"/>
+    
+    <!-- icg: hide sidebar on load as needed -->
+    <script type="text/javascript">
+    (function () {
+    if (window.innerWidth <= 720){
+       document.write('<link rel="stylesheet" href="../../../../../../_static/icg_shutsidebar.css" type="text/css" />')
+       }
+    }());
+    </script>
+    
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '7.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/MathJax/MathJax.js?config=TeX-AMS_SVG"></script>
+    <link rel="shortcut icon" href="../../../../../../_static/ICG15-ICN-UDEC.ico"/>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="Inline FISH or FISH Fragments" href="fish_inline.html" />
+    <link rel="prev" title="Redefining FISH Functions" href="fish_redefining.html" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:normal,bold,bolditalic,italic" rel="stylesheet"> 
+  </head>
+  <body>
+<div id = "main">
+   <div id="maintop">
+   <a id="cornerlink" href="../../../../../../contents.html"><img id="cornerlogo" src="../../../../../../_static/udec32.png" alt="Logo"/>&nbsp;&nbsp;<span class="codename">UDEC</span></a>
+
+<div id="searchbox" role="search">
+    <form class="search" action="../../../../../../search.html" method="get">
+      <div><input type="text" id="sb" name="q" /></div>
+      <!--<div><input type="submit" value="Go" /></div>-->
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+   </div>
+   
+   <div id="maincontent">
+   <div id="mainbody" role="main">
+   
+  <div class="section" id="execution-of-fish-functions">
+<span id="fish-execution"></span><h1>Execution of <span class="codename">FISH</span> Functions</h1>
+<p>In general, <span class="codename">UDEC</span> and <span class="codename">FISH</span> operate as separate entities; <span class="codename">FISH</span> statements cannot be given as <span class="codename">UDEC</span> commands, and <span class="codename">UDEC</span>
+commands do not work directly as statements in a <span class="codename">FISH</span> program. However, there are many ways in which the two systems may
+interact; some of the more common ways are listed below. References to <span class="codename">FISH</span> symbols on the command line must be preceded
+by an &#64; character or enclosed by brackets [].</p>
+<ol class="arabic simple">
+<li><em>Direct use of function</em> – A <span class="codename">FISH</span> function is executed at the user’s request by giving its name on an input line.
+Some typical uses are to generate geometry, set up a particular profile of material properties, or initialize stresses
+in some fashion.</li>
+<li><em>Use as a history variable</em> – When used as the parameter to a <span class="flag3">i</span> <a class="reference internal" href="../../../../../kernel/doc/manual/history_manual/history_commands/history_commands.html#history-commands"><span class="std std-ref">history</span></a> command, a <span class="codename">FISH</span> function is executed at
+regular intervals throughout a simulation, whenever histories are stored.</li>
+<li><em>Automatic execution during stepping</em> – If a <span class="codename">FISH</span> function makes use of the generalized <a class="reference internal" href="fish_fishcallback.html#fish-fishcallback"><span class="std std-ref">callback</span></a>
+capability, then it is executed automatically at every step in <span class="codename">UDEC</span>’s calculation cycle, or whenever a particular event
+occurs. (See <a class="reference internal" href="../../../../../kernel/doc/manual/fish/commands/cmd_fish.callback.html#command:fish.callback" title="command:fish callback"><code class="xref fish fish-cmd docutils literal"><span class="pre">fish</span> <span class="pre">callback</span></code></a> for a discussion on callback events.)</li>
+<li><em>Use of function to control a run</em> – Since a <span class="codename">FISH</span> function may issue <span class="codename">UDEC</span> commands (via the
+<a class="reference internal" href="statements/commandendcommand.html#fish-statement-commandendcommand"><span class="std std-ref">command</span></a> statement), the function can be used to “drive” <span class="codename">UDEC</span>, similar to the
+way a data file is controlled. However, the use of a <span class="codename">FISH</span> function
+to control operation is much more powerful, since parameters to commands may be changed by the function.</li>
+</ol>
+<p>The primary method of executing a <span class="codename">FISH</span> function from <span class="codename">UDEC</span> is to give its name as <span class="codename">UDEC</span> input. In this way, <span class="codename">FISH</span> function names
+act just like regular commands in <span class="codename">UDEC</span>.</p>
+<p>Another important link between <span class="codename">FISH</span> and <span class="codename">UDEC</span> is that in a <span class="codename">UDEC</span> command, a <span class="codename">FISH</span> symbol (variable or function name) may
+be substituted anywhere that a number, string, or vector is expected. This is a very powerful feature, because data files can
+be set up with symbols rather than with actual numbers.</p>
+<p>Another important method of using a <span class="codename">FISH</span> function is to control a <span class="codename">UDEC</span> run or a series of <span class="codename">UDEC</span> operations. <span class="codename">UDEC</span> commands
+are placed within a <span class="flag3">c</span> <a class="reference internal" href="statements/commandendcommand.html#fish-statement-commandendcommand"><span class="std std-ref">command - endcommand</span></a> section in the function. The whole section
+may be within a loop, and parameters may be passed to <span class="codename">UDEC</span> commands.</p>
+</div>
+
+
+   </div>
+   <div id="navbutton">&#8644;</div>
+   <!-- <div id="navbutton">&#9776;</div>
+        <div id="totopbutton">&#8657;</div> -->
+      <div id="mainbottom1">
+      
+   <span class="prevnext">
+   <ul>
+     <li class="nav-item nav-item-0"><a href="../../../../../../contents.html">UDEC 7.0 documentation</a> &#187;</li>
+       <li class="nav-item nav-item-1"><a href="fish_scripting.html" ><span class="codename">FISH</span> Scripting</a> &#187;</li>
+       <li class="nav-item nav-item-2"><a href="fish_languagerules.html" accesskey="U"><span class="codename">FISH</span> Rules and Usage</a> &#187;</li> 
+   </ul>
+   </span>
+      <br><br>
+       <span class="prevnext">
+       &#8656;<a href="fish_redefining.html"
+                           title="previous chapter"> Redefining <span class="codename">FISH</span> Functions</a> |    
+       <a href="fish_inline.html"
+                           title="next chapter">Inline <span class="codename">FISH</span> or <span class="codename">FISH</span> Fragments</a> &#8658;
+      </span>
+      </div>
+      <div id="mainbottom2">
+      <table style="width: 100%; text-align: center; margin-top: -0.5em;" class="blank"><tr>
+      <td><a class="internal reference" href ="http://www.itascacg.com/docs/helpfeedback/feedback2.php?UDEC 7.0?Execution of FISH Functions" target="_blank"> Was this helpful? ...</a></td>
+      <td><a href="https://www.itascacg.com/software/udec">UDEC</a>
+         <a href="../../../../utilities/sphinxhelp.html" id="docdoor">&copy;</a>  2018, 
+      <a href="https://www.itascacg.com">Itasca</a></td>
+      <td>
+         Updated: Jun 07, 2022
+      </td>
+      </tr>
+      </table>
+      </div>
+
+   </div>
+</div> 
+   <div id="mySidenav" class="sidenav">
+     <iframe src="../../../../../../navtree.html" id="toctobj2" frameborder="0"></iframe>
+   </div>
+
+
+
+  <script src="../../../../../../_static/icgscripts.js" ></script>
+  </body>
+</html>

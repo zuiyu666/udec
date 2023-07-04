@@ -1,0 +1,186 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Data Types &#8212; UDEC 7.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/itasca.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css"/>
+    
+    <!-- icg: hide sidebar on load as needed -->
+    <script type="text/javascript">
+    (function () {
+    if (window.innerWidth <= 720){
+       document.write('<link rel="stylesheet" href="../../../../../../_static/icg_shutsidebar.css" type="text/css" />')
+       }
+    }());
+    </script>
+    
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '7.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/MathJax/MathJax.js?config=TeX-AMS_SVG"></script>
+    <link rel="shortcut icon" href="../../../../../../_static/ICG15-ICN-UDEC.ico"/>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="Strings" href="fish_strings.html" />
+    <link rel="prev" title="Lines" href="fish_lines.html" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:normal,bold,bolditalic,italic" rel="stylesheet"> 
+  </head>
+  <body>
+<div id = "main">
+   <div id="maintop">
+   <a id="cornerlink" href="../../../../../../contents.html"><img id="cornerlogo" src="../../../../../../_static/udec32.png" alt="Logo"/>&nbsp;&nbsp;<span class="codename">UDEC</span></a>
+
+<div id="searchbox" role="search">
+    <form class="search" action="../../../../../../search.html" method="get">
+      <div><input type="text" id="sb" name="q" /></div>
+      <!--<div><input type="submit" value="Go" /></div>-->
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+   </div>
+   
+   <div id="maincontent">
+   <div id="mainbody" role="main">
+   
+  <div class="section" id="data-types">
+<span id="fish-datatypes"></span><h1>Data Types</h1>
+<p><span class="codename">FISH</span> variables can be of many types. These include:</p>
+<ol class="arabic simple">
+<li><span class="bi">Integer</span>: Exact numbers in the range -2,147,483,648 to +2,147,483,647.</li>
+<li><span class="bi">Boolean</span>: Either a value of <a class="reference internal" href="../../../../utilities/types.html#type:bool" title="type:bool"><span class="varstringbool"><span class="null">true</span></span></a> or <a class="reference internal" href="../../../../utilities/types.html#type:bool" title="type:bool"><span class="varstringbool"><span class="null">false</span></span></a>.</li>
+<li><span class="bi">Floating-point</span>: Approximate numbers with about fourteen decimal digits of precision, with a
+range of approximately 10<sup>-308</sup> to 10<sup>308</sup>.</li>
+<li><span class="bi">String</span>: Packed sequence of any printable characters; the sequence may be any length, but it
+may be truncated when printed. Strings are denoted in <span class="codename">FISH</span> and <span class="codename">UDEC</span> by a sequence of characters
+enclosed by single or double quotes (e.g., <span class="cmdkey">'Have a nice day'</span> or <span class="cmdkey">&quot;Have a nice day&quot;</span>).
+See the “<a class="reference internal" href="fish_strings.html#fish-stringdesc"><span class="std std-ref">Strings</span></a>” section for further details.</li>
+<li><span class="bi">Pointer</span>: Machine address used when looping through a list and marking references to an object.
+They have an associated type from the object to which the pointer refers, except for the null pointer.
+See the “<a class="reference internal" href="fish_pointers.html#fish-pointers"><span class="std std-ref">Pointers</span></a>” section for further details.</li>
+<li><span class="bi">Vector</span>: 2D or 3D vector of floating-point types. See the “<a class="reference internal" href="fish_vectors.html#fish-vectordesc"><span class="std std-ref">Vectors</span></a>” section for further details.</li>
+<li><span class="bi">Array</span>: A collection of <span class="codename">FISH</span> variables with specified dimensionality.
+See the “<a class="reference internal" href="fish_arrays.html#fish-arraydesc"><span class="std std-ref">Arrays</span></a>” section for further details.</li>
+<li><span class="bi">Matrix</span>: Matrix of numeric values with specified dimensionality.
+See the “<a class="reference internal" href="fish_matrices.html#fish-matrixdesc"><span class="std std-ref">Matrices</span></a>” section for further details.</li>
+<li><span class="bi">Tensor</span>: A symmetric tensor.
+See the “<a class="reference internal" href="fish_tensors.html#fish-tensordesc"><span class="std std-ref">Tensors</span></a>” section for further details.</li>
+<li><span class="bi">Map</span>: An associative array with string or number key and any <span class="codename">FISH</span> variable as value.
+See the “<a class="reference internal" href="fish_maps.html#fish-mapdesc"><span class="std std-ref">Maps</span></a>” section for further details.</li>
+<li><span class="bi">Structure</span>: A structure may contain multiple <span class="codename">FISH</span> variables.
+See the “<a class="reference internal" href="fish_structures.html#fish-structdesc"><span class="std std-ref">Structures</span></a>” section for further details.</li>
+</ol>
+<p>A variable in <span class="codename">FISH</span> can change its type dynamically, depending on the type of the expression to
+which it is set. To make this clear, consider the assignment statement:</p>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="ni">var1</span> <span class="p">=</span><span class="ni"> var2</span>
+</pre></div>
+</div>
+<p>If <span class="fishname">var1</span> and <span class="fishname">var2</span> are of different types, then two things are done. First,
+<span class="fishname">var1</span>’s type is converted to <span class="fishname">var2</span>’s type; second, <span class="fishname">var2</span>’s data are transferred to
+<span class="fishname">var1</span>. In other languages, such as FORTRAN or C, the type of <span class="fishname">var1</span> is not changed,
+although data conversion is done. By default, all variables in <span class="codename">FISH</span> start as integers; however,
+a statement such as:</p>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="ni">var1</span> <span class="p">=</span> <span class="m m-Double">3.4</span>
+</pre></div>
+</div>
+<p>causes <span class="fishname">var1</span> to become a floating-point variable when it is executed. The current types of all
+variables may be determined with the <a class="reference internal" href="../../../../../kernel/doc/manual/fish/commands/cmd_fish.list.html#kwd:fish.list.symbols" title="kwd:fish list symbols"><code class="xref fish fish-cmd docutils literal"><span class="pre">fish</span> <span class="pre">list</span> <span class="pre">symbols</span></code></a> command.</p>
+<p>The dynamic typing mechanism in <span class="codename">FISH</span> was devised to make programming easier for non-programmers. In
+languages such as BASIC, numbers are stored in floating-point format, which can cause difficulties when
+integers are needed for loop counters, for example. In <span class="codename">FISH</span>, the type of the variable adjusts naturally
+to the context in which it is used. For example, in the code fragment:</p>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="ni">n</span>  <span class="p">=</span><span class="ni"> n </span><span class="o">+</span> <span class="m m-Double">2</span>
+<span class="ni">xx</span> <span class="p">=</span><span class="ni"> xx </span><span class="o">+</span> <span class="m m-Double">3.5</span>
+</pre></div>
+</div>
+<p>the variable <span class="fishname">n</span> will be an integer and will be incremented by exactly 2, and the variable <span class="fishname">xx</span>
+will be a floating-point number, subject to the usual truncation error but capable of handling a much
+larger dynamic range. The rules governing type conversion in arithmetic operations are explained in
+“<a class="reference internal" href="fish_arithmetic.html#fish-arithmetic"><span class="std std-ref">Arithmetic: Expressions and Type Conversions</span></a>.” The type of a variable is
+determined by the type of the object on the right-hand side of an assignment statement; this applies
+both to <span class="codename">FISH</span> statements and to assignments made with the <a class="reference internal" href="../../../../../kernel/doc/manual/fish/commands/cmd_fish.set.html#command:fish.set" title="command:fish set"><code class="xref fish fish-cmd docutils literal"><span class="pre">fish</span> <span class="pre">set</span></code></a> command. Both types of assignment
+may be used to change the type of a variable according to the value specified, as follows:</p>
+<p>1. An integer assignment (digits 0-9 only) will cause the variable to become an integer
+(e.g., <span class="fishname">var1</span> = <a class="reference internal" href="../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">334</span></span></a>).</p>
+<p>2. If the assigned number has a decimal point or an exponent denoted by “e” or “E,” then the variable
+will become a floating-point number (e.g., <span class="fishname">var1</span> = <a class="reference internal" href="../../../../utilities/types.html#type:flt" title="type:flt"><span class="varintfloat"><span class="null">3e5</span></span></a>; <span class="fishname">var2</span> = <a class="reference internal" href="../../../../utilities/types.html#type:flt" title="type:flt"><span class="varintfloat"><span class="null">-1.2</span></span></a>).</p>
+<p>3. If the assignment is delimited by single or double quotes, the variable becomes a string, with the “value”
+taken to be the list of characters inside the quotes (e.g., <span class="fishname">var1</span> = <a class="reference internal" href="../../../../utilities/types.html#type:str" title="type:str"><span class="varstringbool"><span class="null">'Have a nice day'</span></span></a>).</p>
+<p>The following sections detail specifics of the data types introduced above:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fish_strings.html">Strings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fish_pointers.html">Pointers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fish_vectors.html">Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fish_arrays.html">Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fish_matrices.html">Matrices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fish_tensors.html">Tensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fish_maps.html">Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fish_structures.html">Structures</a></li>
+</ul>
+</div>
+</div>
+
+
+   </div>
+   <div id="navbutton">&#8644;</div>
+   <!-- <div id="navbutton">&#9776;</div>
+        <div id="totopbutton">&#8657;</div> -->
+      <div id="mainbottom1">
+      
+   <span class="prevnext">
+   <ul>
+     <li class="nav-item nav-item-0"><a href="../../../../../../contents.html">UDEC 7.0 documentation</a> &#187;</li>
+       <li class="nav-item nav-item-1"><a href="fish_scripting.html" ><span class="codename">FISH</span> Scripting</a> &#187;</li>
+       <li class="nav-item nav-item-2"><a href="fish_languagerules.html" accesskey="U"><span class="codename">FISH</span> Rules and Usage</a> &#187;</li> 
+   </ul>
+   </span>
+      <br><br>
+       <span class="prevnext">
+       &#8656;<a href="fish_lines.html"
+                           title="previous chapter"> Lines</a> |    
+       <a href="fish_strings.html"
+                           title="next chapter">Strings</a> &#8658;
+      </span>
+      </div>
+      <div id="mainbottom2">
+      <table style="width: 100%; text-align: center; margin-top: -0.5em;" class="blank"><tr>
+      <td><a class="internal reference" href ="http://www.itascacg.com/docs/helpfeedback/feedback2.php?UDEC 7.0?Data Types" target="_blank"> Was this helpful? ...</a></td>
+      <td><a href="https://www.itascacg.com/software/udec">UDEC</a>
+         <a href="../../../../utilities/sphinxhelp.html" id="docdoor">&copy;</a>  2018, 
+      <a href="https://www.itascacg.com">Itasca</a></td>
+      <td>
+         Updated: Jun 07, 2022
+      </td>
+      </tr>
+      </table>
+      </div>
+
+   </div>
+</div> 
+   <div id="mySidenav" class="sidenav">
+     <iframe src="../../../../../../navtree.html" id="toctobj2" frameborder="0"></iframe>
+   </div>
+
+
+
+  <script src="../../../../../../_static/icgscripts.js" ></script>
+  </body>
+</html>

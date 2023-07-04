@@ -1,0 +1,174 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Maps &#8212; UDEC 7.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/itasca.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css"/>
+    
+    <!-- icg: hide sidebar on load as needed -->
+    <script type="text/javascript">
+    (function () {
+    if (window.innerWidth <= 720){
+       document.write('<link rel="stylesheet" href="../../../../../../_static/icg_shutsidebar.css" type="text/css" />')
+       }
+    }());
+    </script>
+    
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '7.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/MathJax/MathJax.js?config=TeX-AMS_SVG"></script>
+    <link rel="shortcut icon" href="../../../../../../_static/ICG15-ICN-UDEC.ico"/>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="Structures" href="fish_structures.html" />
+    <link rel="prev" title="Tensors" href="fish_tensors.html" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:normal,bold,bolditalic,italic" rel="stylesheet"> 
+  </head>
+  <body>
+<div id = "main">
+   <div id="maintop">
+   <a id="cornerlink" href="../../../../../../contents.html"><img id="cornerlogo" src="../../../../../../_static/udec32.png" alt="Logo"/>&nbsp;&nbsp;<span class="codename">UDEC</span></a>
+
+<div id="searchbox" role="search">
+    <form class="search" action="../../../../../../search.html" method="get">
+      <div><input type="text" id="sb" name="q" /></div>
+      <!--<div><input type="submit" value="Go" /></div>-->
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+   </div>
+   
+   <div id="maincontent">
+   <div id="mainbody" role="main">
+   
+  <div class="section" id="maps">
+<span id="fish-mapdesc"></span><h1>Maps</h1>
+<p>Maps are similar to <a class="reference internal" href="fish_arrays.html#fish-arraydesc"><span class="std std-ref">Arrays</span></a> in that they store <span class="codename">FISH</span> variables in an ordered
+fashion. Unlike arrays, maps can be dynamically sized, and the key used to
+retrieve values from a map can either be an integer or a string. See the
+<a class="reference internal" href="../../../../../fish/doc/fish_manual/fish_fish/fish_fish.html#fish-map"><span class="std std-ref">Map Utilities</span></a> for available methods.</p>
+<p>Maps can be created and assigned in one statement:</p>
+<blockquote>
+<div><a class="reference internal" href="../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">map1</span></span></a> = <span class="fishname">map</span> (<a class="reference internal" href="../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i1</span></span></a> or <a class="reference internal" href="../../../../utilities/types.html#type:str" title="type:str"><span class="varstringbool"><span class="null">s1</span></span></a>, <a class="reference internal" href="../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">var1</span></span></a>, <a class="reference internal" href="../../../../utilities/types.html#type:int" title="type:int"><span class="varintfloat"><span class="null">i2</span></span></a> or <a class="reference internal" href="../../../../utilities/types.html#type:str" title="type:str"><span class="varstringbool"><span class="null">s2</span></span></a>, <a class="reference internal" href="../../../../utilities/types.html#type:sym" title="type:sym"><span class="varfishsym"><span class="null">var2</span></span></a>, …)</div></blockquote>
+<p>where the keys may either be integers or strings. Additional values can be added with the
+<a class="reference internal" href="../../../../../fish/doc/fish_manual/fish_fish/map_utilities/fish_map.add.html#function:map.add" title="function:map add"><code class="xref fish fish-func docutils literal"><span class="pre">map.add</span></code></a> method and removed with the <a class="reference internal" href="../../../../../fish/doc/fish_manual/fish_fish/map_utilities/fish_map.remove.html#function:map.remove" title="function:map remove"><code class="xref fish fish-func docutils literal"><span class="pre">map.remove</span></code></a> method. One can simply access values
+by giving the map name followed by the key in parenthesis ().</p>
+<p>The example below demonstrates the use of a map.</p>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="nb">model new</span>
+<span class="nb">fish</span> <span class="k">define</span> <span class="ni">testBreak</span>
+    <span class="k">loop</span> <span class="k">local</span> <span class="ni">i</span> <span class="p">(</span><span class="m m-Double">1</span><span class="p">,</span><span class="m m-Double">2</span><span class="p">)</span>
+        <span class="ni">testmap</span> <span class="p">=</span><span class="ni"> map</span><span class="p">(</span><span class="s">&#39;first&#39;</span><span class="p">,</span><span class="m m-Double">1</span><span class="p">,</span><span class="s">&#39;second&#39;</span><span class="p">,</span><span class="m m-Double">2</span><span class="p">,</span><span class="s">&#39;third&#39;</span><span class="p">,</span><span class="m m-Double">3</span><span class="p">)</span>
+        <span class="ni">sum</span> <span class="p">=</span> <span class="m m-Double">0</span>
+        <span class="k">loop</span> <span class="k">foreach</span> <span class="k">local</span> <span class="ni">v</span> <span class="n">testmap</span>
+            <span class="ni">sum</span> <span class="p">=</span><span class="ni"> sum </span><span class="o">+</span><span class="ni"> v</span>
+        <span class="k">endloop</span>
+    <span class="k">endloop</span>        
+<span class="k">end</span>
+<span class="ni">@testBreak</span>
+<span class="ni">[sum]</span>
+
+<span class="nb">fish</span> <span class="k">define</span> <span class="ni">test1</span>
+    <span class="k">local</span> <span class="ni">temp</span> <span class="p">=</span><span class="ni"> map</span><span class="p">(</span><span class="s">&#39;hello&#39;</span><span class="p">,</span><span class="m m-Double">1</span><span class="p">,</span><span class="s">&#39;world&#39;</span><span class="p">,</span><span class="m m-Double">2</span><span class="p">)</span>
+    <span class="ni">test1</span> <span class="p">=</span><span class="ni"> temp</span><span class="p">(</span><span class="s">&#39;hello&#39;</span><span class="p">)</span> <span class="o">+</span><span class="ni"> temp</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="ni">[test1]</span>
+
+<span class="nb">fish</span> <span class="k">define</span> <span class="ni">test2</span>
+    <span class="ni">testmap</span> <span class="p">=</span><span class="ni"> map</span><span class="p">(</span><span class="s">&#39;first&#39;</span><span class="p">,</span><span class="m m-Double">1</span><span class="p">,</span><span class="s">&#39;second&#39;</span><span class="p">,</span><span class="m m-Double">2</span><span class="p">,</span><span class="s">&#39;third&#39;</span><span class="p">,</span><span class="m m-Double">3</span><span class="p">)</span>
+    <span class="k">map.remove</span><span class="p">(</span><span class="ni">testmap</span><span class="p">,</span><span class="s">&#39;first&#39;</span><span class="p">)</span>
+    <span class="k">map.add</span><span class="p">(</span><span class="ni">testmap</span><span class="p">,</span><span class="s">&#39;fourth&#39;</span><span class="p">,</span><span class="m m-Double">4</span><span class="p">)</span>
+    <span class="n">testmap</span><span class="p">(</span><span class="s">&#39;second&#39;</span><span class="p">)=</span><span class="m m-Double">8</span>
+    <span class="c">; values are now fourth-&gt;4, second-&gt;8, third-&gt;3</span>
+    <span class="k">local</span> <span class="ni">output</span> <span class="p">=</span> <span class="m m-Double">0</span>
+    <span class="k">loop</span> <span class="k">foreach</span> <span class="ni">n</span> <span class="n">testmap</span>
+        <span class="ni">output</span> <span class="p">=</span><span class="ni"> output </span><span class="o">+</span><span class="ni"> n</span>
+    <span class="k">endloop</span>
+    <span class="ni">test2</span> <span class="p">=</span><span class="ni"> output</span>
+<span class="k">end</span>
+<span class="ni">[test2]</span>
+
+<span class="nb">fish</span> <span class="k">define</span> <span class="ni">test3</span>
+    <span class="c">; test keys</span>
+    <span class="ni">testmap</span> <span class="p">=</span><span class="ni"> map</span><span class="p">(</span><span class="s">&#39;yet&#39;</span><span class="p">,</span><span class="m m-Double">1</span><span class="p">,</span><span class="s">&#39;another&#39;</span><span class="p">,</span><span class="m m-Double">4</span><span class="p">,</span><span class="s">&#39;test&#39;</span><span class="p">,</span><span class="m m-Double">9</span><span class="p">,</span><span class="s">&#39;m&#39;</span><span class="p">,</span><span class="m m-Double">16</span><span class="p">)</span>
+    <span class="ni">testkeys</span> <span class="p">=</span> <span class="k">map.keys</span><span class="p">(</span><span class="ni">testmap</span><span class="p">)</span>
+    <span class="ni">test3</span> <span class="p">=</span><span class="ni"> testkeys</span><span class="p">(</span><span class="m m-Double">3</span><span class="p">)</span>
+    
+    <span class="c">; check has</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">map.has</span><span class="p">(</span><span class="ni">testmap</span><span class="p">,</span><span class="s">&#39;wrongkey&#39;</span><span class="p">))</span>
+      <span class="ni">hascheck</span> <span class="p">=</span> <span class="m m-Double">909</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">map.has</span><span class="p">(</span><span class="ni">testmap</span><span class="p">,</span><span class="s">&#39;another&#39;</span><span class="p">))</span>
+      <span class="ni">hascheck</span> <span class="p">=</span><span class="ni"> testmap[&#39;another&#39;]</span>
+    <span class="k">endif</span>
+<span class="k">end</span>
+<span class="ni">[test3]</span>
+<span class="ni">[hascheck]</span>
+</pre></div>
+</div>
+</div>
+
+
+   </div>
+   <div id="navbutton">&#8644;</div>
+   <!-- <div id="navbutton">&#9776;</div>
+        <div id="totopbutton">&#8657;</div> -->
+      <div id="mainbottom1">
+      
+   <span class="prevnext">
+   <ul>
+     <li class="nav-item nav-item-0"><a href="../../../../../../contents.html">UDEC 7.0 documentation</a> &#187;</li>
+       <li class="nav-item nav-item-1"><a href="fish_scripting.html" ><span class="codename">FISH</span> Scripting</a> &#187;</li>
+       <li class="nav-item nav-item-2"><a href="fish_languagerules.html" ><span class="codename">FISH</span> Rules and Usage</a> &#187;</li>
+       <li class="nav-item nav-item-3"><a href="fish_datatypes.html" accesskey="U">Data Types</a> &#187;</li> 
+   </ul>
+   </span>
+      <br><br>
+       <span class="prevnext">
+       &#8656;<a href="fish_tensors.html"
+                           title="previous chapter"> Tensors</a> |    
+       <a href="fish_structures.html"
+                           title="next chapter">Structures</a> &#8658;
+      </span>
+      </div>
+      <div id="mainbottom2">
+      <table style="width: 100%; text-align: center; margin-top: -0.5em;" class="blank"><tr>
+      <td><a class="internal reference" href ="http://www.itascacg.com/docs/helpfeedback/feedback2.php?UDEC 7.0?Maps" target="_blank"> Was this helpful? ...</a></td>
+      <td><a href="https://www.itascacg.com/software/udec">UDEC</a>
+         <a href="../../../../utilities/sphinxhelp.html" id="docdoor">&copy;</a>  2018, 
+      <a href="https://www.itascacg.com">Itasca</a></td>
+      <td>
+         Updated: Jun 07, 2022
+      </td>
+      </tr>
+      </table>
+      </div>
+
+   </div>
+</div> 
+   <div id="mySidenav" class="sidenav">
+     <iframe src="../../../../../../navtree.html" id="toctobj2" frameborder="0"></iframe>
+   </div>
+
+
+
+  <script src="../../../../../../_static/icgscripts.js" ></script>
+  </body>
+</html>

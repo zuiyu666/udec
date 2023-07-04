@@ -1,0 +1,130 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Inline FISH or FISH Fragments &#8212; UDEC 7.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/itasca.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css"/>
+    
+    <!-- icg: hide sidebar on load as needed -->
+    <script type="text/javascript">
+    (function () {
+    if (window.innerWidth <= 720){
+       document.write('<link rel="stylesheet" href="../../../../../../_static/icg_shutsidebar.css" type="text/css" />')
+       }
+    }());
+    </script>
+    
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '7.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/MathJax/MathJax.js?config=TeX-AMS_SVG"></script>
+    <link rel="shortcut icon" href="../../../../../../_static/ICG15-ICN-UDEC.ico"/>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="FISH Error Handling" href="fish_errorhandling.html" />
+    <link rel="prev" title="Execution of FISH Functions" href="fish_execution.html" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:normal,bold,bolditalic,italic" rel="stylesheet"> 
+  </head>
+  <body>
+<div id = "main">
+   <div id="maintop">
+   <a id="cornerlink" href="../../../../../../contents.html"><img id="cornerlogo" src="../../../../../../_static/udec32.png" alt="Logo"/>&nbsp;&nbsp;<span class="codename">UDEC</span></a>
+
+<div id="searchbox" role="search">
+    <form class="search" action="../../../../../../search.html" method="get">
+      <div><input type="text" id="sb" name="q" /></div>
+      <!--<div><input type="submit" value="Go" /></div>-->
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+   </div>
+   
+   <div id="maincontent">
+   <div id="mainbody" role="main">
+   
+  <div class="section" id="inline-fish-or-fish-fragments">
+<span id="fish-inline"></span><h1>Inline <span class="codename">FISH</span> or <span class="codename">FISH</span> Fragments</h1>
+<p>In addition to the &#64; symbol convention, there is an alternate syntax for connecting <span class="codename">FISH</span> to the command line. Anything
+found inside square brackets [] is recognized and treated as inline <span class="codename">FISH</span>. Its contents are interpreted as a <span class="codename">FISH</span>
+function in-place and immediately evaluated, with the result being substituted as if an &#64; symbol were found. This can
+save the user from setting up a large number of global symbols that exist as trivial extensions of base parameters.
+Brackets [] can be used to delimit <span class="codename">FISH</span> code that will be executed “inline” in a command.
+For example:</p>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="nb">ball</span> <span class="n">create</span> <span class="n">id</span> <span class="ni">[ballID]</span> <span class="n">position</span> <span class="ni">[ballPos]</span> <span class="n">radius</span> <span class="ni">[ballRad]</span>
+</pre></div>
+</div>
+<p><span class="codename">FISH</span> fragments can also be executed directly as a convenient shorthand for single-line <span class="codename">FISH</span> without having to create
+an explicit function:</p>
+<div class="highlight-fish"><div class="highlight"><pre><span></span><span class="ni">[global fred = math.cos(4.5)]</span>
+<span class="ni">[execute_my_imported_fish_intrisic(with,three,arguments)]</span>
+</pre></div>
+</div>
+<p>Note that inline <span class="codename">FISH</span> is parsed and executed every time an attempt to evaluate the token is made, which might happen
+several times while the
+command as a whole is processed. Be aware of possible side effects and efficiency issues.</p>
+</div>
+
+
+   </div>
+   <div id="navbutton">&#8644;</div>
+   <!-- <div id="navbutton">&#9776;</div>
+        <div id="totopbutton">&#8657;</div> -->
+      <div id="mainbottom1">
+      
+   <span class="prevnext">
+   <ul>
+     <li class="nav-item nav-item-0"><a href="../../../../../../contents.html">UDEC 7.0 documentation</a> &#187;</li>
+       <li class="nav-item nav-item-1"><a href="fish_scripting.html" ><span class="codename">FISH</span> Scripting</a> &#187;</li>
+       <li class="nav-item nav-item-2"><a href="fish_languagerules.html" accesskey="U"><span class="codename">FISH</span> Rules and Usage</a> &#187;</li> 
+   </ul>
+   </span>
+      <br><br>
+       <span class="prevnext">
+       &#8656;<a href="fish_execution.html"
+                           title="previous chapter"> Execution of <span class="codename">FISH</span> Functions</a> |    
+       <a href="fish_errorhandling.html"
+                           title="next chapter"><span class="codename">FISH</span> Error Handling</a> &#8658;
+      </span>
+      </div>
+      <div id="mainbottom2">
+      <table style="width: 100%; text-align: center; margin-top: -0.5em;" class="blank"><tr>
+      <td><a class="internal reference" href ="http://www.itascacg.com/docs/helpfeedback/feedback2.php?UDEC 7.0?Inline FISH or FISH Fragments" target="_blank"> Was this helpful? ...</a></td>
+      <td><a href="https://www.itascacg.com/software/udec">UDEC</a>
+         <a href="../../../../utilities/sphinxhelp.html" id="docdoor">&copy;</a>  2018, 
+      <a href="https://www.itascacg.com">Itasca</a></td>
+      <td>
+         Updated: Jun 07, 2022
+      </td>
+      </tr>
+      </table>
+      </div>
+
+   </div>
+</div> 
+   <div id="mySidenav" class="sidenav">
+     <iframe src="../../../../../../navtree.html" id="toctobj2" frameborder="0"></iframe>
+   </div>
+
+
+
+  <script src="../../../../../../_static/icgscripts.js" ></script>
+  </body>
+</html>
