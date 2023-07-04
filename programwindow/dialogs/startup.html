@@ -1,0 +1,134 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Startup Dialog &#8212; UDEC 7.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../../_static/itasca.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../_static/pygments.css" type="text/css"/>
+    
+    <!-- icg: hide sidebar on load as needed -->
+    <script type="text/javascript">
+    (function () {
+    if (window.innerWidth <= 720){
+       document.write('<link rel="stylesheet" href="../../../../../../../_static/icg_shutsidebar.css" type="text/css" />')
+       }
+    }());
+    </script>
+    
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../../',
+        VERSION:     '7.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/MathJax/MathJax.js?config=TeX-AMS_SVG"></script>
+    <link rel="shortcut icon" href="../../../../../../../_static/ICG15-ICN-UDEC.ico"/>
+    <link rel="index" title="Index" href="../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../search.html" />
+    <link rel="next" title="Hardware Lock Not Detected! Dialog" href="key_error.html" />
+    <link rel="prev" title="Generate Movie Frames" href="../../mechanics/configuration/tools/generatemovie.html" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:normal,bold,bolditalic,italic" rel="stylesheet"> 
+  </head>
+  <body>
+<div id = "main">
+   <div id="maintop">
+   <a id="cornerlink" href="../../../../../../../contents.html"><img id="cornerlogo" src="../../../../../../../_static/udec32.png" alt="Logo"/>&nbsp;&nbsp;<span class="codename">UDEC</span></a>
+
+<div id="searchbox" role="search">
+    <form class="search" action="../../../../../../../search.html" method="get">
+      <div><input type="text" id="sb" name="q" /></div>
+      <!--<div><input type="submit" value="Go" /></div>-->
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+   </div>
+   
+   <div id="maincontent">
+   <div id="mainbody" role="main">
+   
+  <div class="section" id="startup-dialog">
+<span id="dlg-startup"></span><h1><em>Startup</em> Dialog</h1>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../../../../../../_images/startup1.png"><img alt="../../../../../../../_images/startup1.png" src="../../../../../../../_images/startup1.png" style="width: 353.76px; height: 228.36px;" /></a>
+</div>
+<p>The <em>Startup</em> dialog delivers status messages when the program is first opened, and provides options for what to do vis-à-vis the project.</p>
+<p><strong>The Options</strong></p>
+<p>The first three project-related startup options in the dialog are self-evident.
+Pressing the <span class="button">Cancel</span> button will cause the user to start without a project (see the tip below for more information).</p>
+<p><strong>Dismissing the Dialog</strong></p>
+<p>Once users are familiar with working with projects, they may want to eschew the <em>Startup Options</em> dialog entirely when
+<span class="codename">UDEC</span> starts, which can be done by using the “Do not show this window again” check box. Once checked, the choice made by
+the user in this instance to start <span class="codename">UDEC</span> is saved in the <a class="reference internal" href="../../mechanics/configuration/options/options.html#dlg-options"><span class="std std-ref">Options</span></a> dialog. On all subsequent start-ups,
+that choice will be used and the <em>Startup Options</em> dialog will not appear. Should the user wish to select a different
+start-up behavior, this may be done using the <em>Startup</em> group in the <em>Options</em> dialog.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last"><strong>About working without a project</strong>: <span class="codename">UDEC</span> always behaves as though a project is loaded, even in the case when <span class="button">Cancel</span> is chosen in the <em>Startup Options</em> dialog. When working without a project, all items (data files, model state (SAV) files, etc.) currently open in the program are considered part of a currently unsaved, “temp” project. If the user wishes to save the items in use as a group (i.e., as a project), simply saving the temp project (using <span class="menuselection">File —&gt; Save</span>) will create a project out of the open items. If the user wishes to consider the open items individually, then the item-specific save command (<span class="menuselection">File —&gt; [Item Name] —&gt; Save</span>) should be used to save any changes made to them using <span class="codename">UDEC</span>.</p>
+</div>
+</div>
+
+
+   </div>
+   <div id="navbutton">&#8644;</div>
+   <!-- <div id="navbutton">&#9776;</div>
+        <div id="totopbutton">&#8657;</div> -->
+      <div id="mainbottom1">
+      
+   <span class="prevnext">
+   <ul>
+     <li class="nav-item nav-item-0"><a href="../../../../../../../contents.html">UDEC 7.0 documentation</a> &#187;</li>
+       <li class="nav-item nav-item-1"><a href="../../program_guide.html" >Program Guide</a> &#187;</li>
+       <li class="nav-item nav-item-2"><a href="../../mechanics/program_mechanics.html" >Program Mechanics</a> &#187;</li>
+       <li class="nav-item nav-item-3"><a href="../../mechanics/configuration/configuration.html" >Program Layout, Configuration, Tools</a> &#187;</li>
+       <li class="nav-item nav-item-4"><a href="../../mechanics/configuration/tools.html" accesskey="U">Tools &amp; Dialogs</a> &#187;</li> 
+   </ul>
+   </span>
+      <br><br>
+       <span class="prevnext">
+       &#8656;<a href="../../mechanics/configuration/tools/generatemovie.html"
+                           title="previous chapter"> Generate Movie Frames</a> |    
+       <a href="key_error.html"
+                           title="next chapter"><em>Hardware Lock Not Detected!</em> Dialog</a> &#8658;
+      </span>
+      </div>
+      <div id="mainbottom2">
+      <table style="width: 100%; text-align: center; margin-top: -0.5em;" class="blank"><tr>
+      <td><a class="internal reference" href ="http://www.itascacg.com/docs/helpfeedback/feedback2.php?UDEC 7.0?Startup Dialog" target="_blank"> Was this helpful? ...</a></td>
+      <td><a href="https://www.itascacg.com/software/udec">UDEC</a>
+         <a href="../../../../../utilities/sphinxhelp.html" id="docdoor">&copy;</a>  2018, 
+      <a href="https://www.itascacg.com">Itasca</a></td>
+      <td>
+         Updated: Jun 07, 2022
+      </td>
+      </tr>
+      </table>
+      </div>
+
+   </div>
+</div> 
+   <div id="mySidenav" class="sidenav">
+     <iframe src="../../../../../../../navtree.html" id="toctobj2" frameborder="0"></iframe>
+   </div>
+
+
+
+  <script src="../../../../../../../_static/icgscripts.js" ></script>
+  </body>
+</html>
